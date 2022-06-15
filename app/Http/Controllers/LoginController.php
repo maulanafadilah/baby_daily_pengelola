@@ -31,14 +31,8 @@ class LoginController extends Controller
         
 
         if(Auth::attempt($credentials)){
-
-            if($role->id_peranan !== 1){
-                return view('login.error');
-            } else{
-                $request->session()->regenerate();
-                return redirect()->intended('/');
-            }
-
+            $request->session()->regenerate();
+            return redirect()->intended('/');
         }
 
         return back()->with('loginError', 'Login Gagal, Nomor Telepon atau Kata Sandi Salah!');
